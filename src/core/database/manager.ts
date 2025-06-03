@@ -185,13 +185,25 @@ export class DatabaseManager {
   async upsertUsers(users: User[]) {
     return this.db
       .transaction('rw', this.users(), () => {
-        const data: User[] = users.map((user) => ({
-          ...user,
-          twe_private_fields: {
-            created_at: +parseTwitterDateTime(user.legacy.created_at),
-            updated_at: Date.now(),
-          },
-        }));
+        const data: User[] = users.map((user) => {
+          const legacy = {
+            ...user.legacy,
+            screen_name: user.legacy.screen_name ?? user.core?.screen_name ?? '',
+            name: user.legacy.name ?? user.core?.name ?? '',
+            created_at:
+              user.legacy.created_at ?? user.core?.created_at ?? '',
+          };
+          return {
+            ...user,
+            legacy,
+            twe_private_fields: {
+              created_at: +parseTwitterDateTime(
+                legacy.created_at ?? user.core?.created_at ?? ''
+              ),
+              updated_at: Date.now(),
+            },
+          };
+        });
 
         return this.users().bulkPut(data);
       })
@@ -240,6 +252,7 @@ export class DatabaseManager {
       'twe_private_fields.updated_at',
       'twe_private_fields.media_count',
       'core.user_results.result.legacy.screen_name',
+      'core.user_results.result.core.screen_name',
       'legacy.favorite_count',
       'legacy.retweet_count',
       'legacy.bookmark_count',
@@ -257,6 +270,7 @@ export class DatabaseManager {
       'twe_private_fields.created_at',
       'twe_private_fields.updated_at',
       'legacy.screen_name',
+      'core.screen_name',
       'legacy.followers_count',
       // 'legacy.friends_count',
       'legacy.statuses_count',
