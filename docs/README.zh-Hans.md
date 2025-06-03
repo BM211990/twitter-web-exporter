@@ -42,7 +42,7 @@
 ## 安装
 
 1. 安装浏览器扩展 [Tampermonkey](https://www.tampermonkey.net/) 或 [Violentmonkey](https://violentmonkey.github.io/)
-2. 点击 [这里](https://github.com/prinsss/twitter-web-exporter/releases/latest/download/twitter-web-exporter.user.js) 安装用户脚本
+2. 点击 [这里](https://github.com/BM211990/twitter-web-exporter/releases/latest/download/twitter-web-exporter.user.js) 安装用户脚本
 
 ## 使用方法
 

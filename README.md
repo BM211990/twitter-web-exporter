@@ -42,7 +42,7 @@
 ## Installation
 
 1. Install the browser extension [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/)
-2. Click [HERE](https://github.com/prinsss/twitter-web-exporter/releases/latest/download/twitter-web-exporter.user.js) to install the user script
+2. Click [HERE](https://github.com/BM211990/twitter-web-exporter/releases/latest/download/twitter-web-exporter.user.js) to install the user script
 
 ## Usage
 
