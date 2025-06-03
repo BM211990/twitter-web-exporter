@@ -165,9 +165,7 @@ export const columns = [
   ),
   columnHelper.accessor(
     (row) =>
-      row.core.user_results.result.legacy?.name ??
-      row.core.user_results.result.core?.name ??
-      '',
+      row.core.user_results.result.legacy?.name ?? row.core.user_results.result.core?.name ?? '',
     {
       id: 'name',
       meta: { exportKey: 'name', exportHeader: 'Profile Name' },
