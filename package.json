@@ -15,7 +15,8 @@
     "lint": "eslint .",
     "commitlint": "commitlint --edit",
     "changelog": "git-cliff -o CHANGELOG.md",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@preact/signals": "2.0.0",
@@ -51,6 +52,7 @@
     "typescript-eslint": "^8.29.0",
     "vite": "^6.2.5",
     "vite-plugin-i18next-loader": "^3.1.2",
-    "vite-plugin-monkey": "^5.0.8"
+    "vite-plugin-monkey": "^5.0.8",
+    "vitest": "^3.2.1"
   }
 }
