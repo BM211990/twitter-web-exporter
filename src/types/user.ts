@@ -23,6 +23,15 @@ export interface User {
   has_graduated_access: boolean;
   is_blue_verified: boolean;
   profile_image_shape: 'Square' | 'Circle';
+  /**
+   * New location of some basic profile fields since a Twitter update.
+   * These fields used to be in the `legacy` object.
+   */
+  core?: {
+    created_at?: string;
+    name?: string;
+    screen_name?: string;
+  };
   legacy: {
     followed_by: boolean;
     following: boolean;

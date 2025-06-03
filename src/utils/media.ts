@@ -21,11 +21,17 @@ export const patterns: Record<string, { description: string; extractor: PatternE
   },
   screen_name: {
     description: 'The username of tweet author',
-    extractor: (tweet) => tweet.core.user_results.result.legacy.screen_name,
+    extractor: (tweet) =>
+      tweet.core.user_results.result.legacy?.screen_name ??
+      tweet.core.user_results.result.core?.screen_name ??
+      '',
   },
   name: {
     description: 'The profile name of tweet author',
-    extractor: (tweet) => tweet.core.user_results.result.legacy.name,
+    extractor: (tweet) =>
+      tweet.core.user_results.result.legacy?.name ??
+      tweet.core.user_results.result.core?.name ??
+      '',
   },
   index: {
     description: 'The media index in tweet (start from 0)',
@@ -90,9 +96,10 @@ export function extractMedia(
 
     // For users, download their profile images and banners.
     if (item.__typename === 'User') {
+      const screenName = item.legacy.screen_name ?? item.core?.screen_name ?? 'unknown';
       if (item.legacy.profile_image_url_https) {
         const ext = getFileExtensionFromUrl(item.legacy.profile_image_url_https);
-        const filename = `${item.legacy.screen_name}_profile_image.${ext}`;
+        const filename = `${screenName}_profile_image.${ext}`;
         gallery.set(filename, {
           filename,
           type: 'photo',
@@ -102,7 +109,7 @@ export function extractMedia(
 
       if (item.legacy.profile_banner_url) {
         const ext = getFileExtensionFromUrl(item.legacy.profile_banner_url);
-        const filename = `${item.legacy.screen_name}_profile_banner.${ext}`;
+        const filename = `${screenName}_profile_banner.${ext}`;
         gallery.set(filename, {
           filename,
           type: 'photo',
