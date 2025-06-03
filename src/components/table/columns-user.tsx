@@ -45,30 +45,24 @@ export const columns = [
     header: () => <Trans i18nKey="ID" />,
     cell: (info) => <p class="w-20 break-all font-mono text-xs">{info.getValue()}</p>,
   }),
-  columnHelper.accessor(
-    (row) => row.legacy.screen_name ?? row.core?.screen_name ?? '',
-    {
-      id: 'screen_name',
-      meta: { exportKey: 'screen_name', exportHeader: 'Screen Name' },
-      header: () => <Trans i18nKey="Screen Name" />,
-      cell: (info) => (
-        <p class="whitespace-pre">
-          <a class="link" target="_blank" href={getUserURL(info.row.original)}>
-            @{info.getValue()}
-          </a>
-        </p>
-      ),
-    },
-  ),
-  columnHelper.accessor(
-    (row) => row.legacy.name ?? row.core?.name ?? '',
-    {
-      id: 'name',
-      meta: { exportKey: 'name', exportHeader: 'Profile Name' },
-      header: () => <Trans i18nKey="Profile Name" />,
-      cell: (info) => <p class="w-32">{info.getValue()}</p>,
-    },
-  ),
+  columnHelper.accessor((row) => row.legacy.screen_name ?? row.core?.screen_name ?? '', {
+    id: 'screen_name',
+    meta: { exportKey: 'screen_name', exportHeader: 'Screen Name' },
+    header: () => <Trans i18nKey="Screen Name" />,
+    cell: (info) => (
+      <p class="whitespace-pre">
+        <a class="link" target="_blank" href={getUserURL(info.row.original)}>
+          @{info.getValue()}
+        </a>
+      </p>
+    ),
+  }),
+  columnHelper.accessor((row) => row.legacy.name ?? row.core?.name ?? '', {
+    id: 'name',
+    meta: { exportKey: 'name', exportHeader: 'Profile Name' },
+    header: () => <Trans i18nKey="Profile Name" />,
+    cell: (info) => <p class="w-32">{info.getValue()}</p>,
+  }),
   columnHelper.accessor('legacy.description', {
     meta: { exportKey: 'description', exportHeader: 'Description' },
     header: () => <Trans i18nKey="Description" />,

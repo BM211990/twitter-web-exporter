@@ -190,16 +190,13 @@ export class DatabaseManager {
             ...user.legacy,
             screen_name: user.legacy.screen_name ?? user.core?.screen_name ?? '',
             name: user.legacy.name ?? user.core?.name ?? '',
-            created_at:
-              user.legacy.created_at ?? user.core?.created_at ?? '',
+            created_at: user.legacy.created_at ?? user.core?.created_at ?? '',
           };
           return {
             ...user,
             legacy,
             twe_private_fields: {
-              created_at: +parseTwitterDateTime(
-                legacy.created_at ?? user.core?.created_at ?? ''
-              ),
+              created_at: +parseTwitterDateTime(legacy.created_at ?? user.core?.created_at ?? ''),
               updated_at: Date.now(),
             },
           };
