@@ -129,6 +129,15 @@
 **问：脚本无法运行！** <br>
 答：平台升级可能会导致脚本功能故障。如果遇到任何问题，请提交 [issue](https://github.com/prinsss/twitter-web-exporter/issues) 反馈。
 
+## 开发
+
+安装依赖并运行测试：
+
+```bash
+npm install
+npm test
+```
+
 ## 开源许可
 
 [MIT](LICENSE)
